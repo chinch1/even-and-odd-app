@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  # number-validator:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/number-validator/Dockerfile
+  #   container_name: even-and-odd-number-validator
+  #   ports:
+  #     - 3000:3000
+  #   depends_on:
+  #     - db-connector
+  #   command: npm run start:dev number-validator
+
+  db-connector:
+    build:
+      context: .
+      dockerfile: ./apps/db-connector/Dockerfile
+    container_name: even-and-odd-db-connector
+    ports:
+      - 3001:3001
+    depends_on:
+      - mongo
+    command: npm run start:dev db-connector
+
+  mongo:
+    image: mongo:latest
+    # container_name: even-and-odd-mongo
+    ports:
+      - 27017:27017
+    # volumes:
+    #   - ./volumes/mongo:/data/db
