@@ -10,10 +10,9 @@ import { DbConnectorService } from './db-connector.service';
     TypeOrmModule.forRoot({
       type: 'mongodb',
       host: 'mongo',
-      database: 'test',
+      database: 'even-and-odd-mongo',
       port: 27017,
       entities: [EvenNumber, OddNumber],
-      useUnifiedTopology: true,
       synchronize: true,
     }),
     TypeOrmModule.forFeature([EvenNumber, OddNumber]),

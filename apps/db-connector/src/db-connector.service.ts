@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { GetNumbersDto } from '../dto/get-numbers.dto';
 import { EvenNumber } from '../entities/even-number.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { MongoRepository } from 'typeorm';
 import { OddNumber } from '../entities/odd-number.entity';
+import { MongoRepository } from 'typeorm';
 
 @Injectable()
 export class DbConnectorService {
@@ -15,15 +15,19 @@ export class DbConnectorService {
   ) {}
 
   returnHello(): string {
-    return 'Use "even" or "odd" in the URL to get the specific numbers';
+    return 'Use type=even | type=odd in the URL to get the specific numbers';
   }
 
-  createEvenNumber(value: number): Promise<EvenNumber | OddNumber> {
-    return this.createEvenNumber(value);
+  createEvenNumber(value: number): Promise<any> {
+    return this.evenNumberRepository.insert({ value }).then((res) => {
+      return res.raw.ops[0];
+    });
   }
 
-  createOddNumber(value: number): Promise<EvenNumber | OddNumber> {
-    return this.createOddNumber(value);
+  createOddNumber(value: number): Promise<EvenNumber> {
+    return this.oddNumberRepository.insert({ value }).then((res) => {
+      return res.raw.ops[0];
+    });
   }
 
   findLastTen(

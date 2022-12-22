@@ -15,22 +15,22 @@ export class DbConnectorController {
   }
 
   @Post('sendNumber')
-  async createNumber(
+  createNumber(
     @Body() createNumberDto: CreateNumberDto,
   ): Promise<EvenNumber | OddNumber> {
     console.log('Received number from number-validator...');
 
     const { type, value } = createNumberDto;
     if (type.toLowerCase() === 'even') {
-      return await this.dbConnectorService.createEvenNumber(value);
+      return this.dbConnectorService.createEvenNumber(value);
     }
-    return await this.dbConnectorService.createOddNumber(value);
+    return this.dbConnectorService.createOddNumber(value);
   }
 
   @Get('lastNumbers')
-  async findLastTen(
+  findLastTen(
     @Query() getNumbersDto: GetNumbersDto,
   ): Promise<EvenNumber[] | OddNumber[]> {
-    return await this.dbConnectorService.findLastTen(getNumbersDto);
+    return this.dbConnectorService.findLastTen(getNumbersDto);
   }
 }
