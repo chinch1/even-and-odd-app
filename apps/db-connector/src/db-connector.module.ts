@@ -9,7 +9,7 @@ import { DbConnectorService } from './db-connector.service';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      host: 'localhost',
+      host: 'mongo',
       database: 'test',
       port: 27017,
       entities: [EvenNumber, OddNumber],
