@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber } from 'class-validator';
+import { EvenOrOdd } from '../enums/even-or-odd';
 
 export class CreateNumberDto {
   @IsNotEmpty()
@@ -6,6 +7,6 @@ export class CreateNumberDto {
   value: number;
 
   @IsNotEmpty()
-  @IsString()
+  @IsEnum(EvenOrOdd)
   type: string;
 }

@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { EvenNumber } from 'apps/db-connector/schemas/even-number.schemas';
-import { OddNumber } from 'apps/db-connector/schemas/odd-number.schema';
+import { EvenNumber } from 'apps/db-connector/entities/even-number.entity';
+import { OddNumber } from 'apps/db-connector/entities/odd-number.entity';
 import { CreateNumberDto } from '../dto/create-number.dto';
 
 @Injectable()

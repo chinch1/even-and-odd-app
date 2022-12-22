@@ -1,16 +1,16 @@
 version: '3'
 
 services:
-  # number-validator:
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/number-validator/Dockerfile
-  #   container_name: even-and-odd-number-validator
-  #   ports:
-  #     - '3000:3000'
-  #   depends_on:
-  #     - db-connector
-  #   command: npm run start:dev number-validator
+  number-validator:
+    build:
+      context: .
+      dockerfile: ./apps/number-validator/Dockerfile
+    container_name: even-and-odd-number-validator
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db-connector
+    command: npm run start:dev number-validator
 
   db-connector:
     build:
