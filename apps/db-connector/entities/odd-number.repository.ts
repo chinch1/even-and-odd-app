@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
-import { OddNumber } from './odd-number.schema';
+import { OddNumber } from './odd-number.entity';
 
 @Injectable()
 export class OddNumbersRepository extends Repository<OddNumber> {

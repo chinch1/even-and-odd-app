@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
-import { EvenNumber } from './even-number.schemas';
+import { EvenNumber } from './even-number.entity';
 
 @Injectable()
 export class EvenNumbersRepository extends Repository<EvenNumber> {

@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { CreateNumberDto } from '../dto/create-number.dto';
 import { GetNumbersDto } from '../dto/get-numbers.dto';
-import { EvenNumber } from '../schemas/even-number.schemas';
-import { OddNumber } from '../schemas/odd-number.schema';
+import { EvenNumber } from '../entities/even-number.entity';
+import { OddNumber } from '../entities/odd-number.entity';
 import { DbConnectorService } from './db-connector.service';
 
 @Controller()

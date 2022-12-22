@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { GetNumbersDto } from '../dto/get-numbers.dto';
-import { EvenNumber, EvenNumberDocument } from '../schemas/even-number.schemas';
-import { OddNumber, OddNumberDocument } from '../schemas/odd-number.schema';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { EvenNumber } from '../entities/even-number.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { MongoRepository } from 'typeorm';
+import { OddNumber } from '../entities/odd-number.entity';
 
 @Injectable()
 export class DbConnectorService {
   constructor(
-    @InjectModel(EvenNumber.name)
-    private evenNumberModel: Model<EvenNumberDocument>,
-    @InjectModel(OddNumber.name)
-    private oddNumberModel: Model<OddNumberDocument>,
+    @InjectRepository(EvenNumber)
+    private readonly evenNumberRepository: MongoRepository<EvenNumber>,
+    @InjectRepository(OddNumber)
+    private readonly oddNumberRepository: MongoRepository<OddNumber>,
   ) {}
 
   returnHello(): string {
@@ -19,13 +19,11 @@ export class DbConnectorService {
   }
 
   createEvenNumber(value: number): Promise<EvenNumber | OddNumber> {
-    const newEvenNumber = new this.evenNumberModel({ value });
-    return newEvenNumber.save();
+    return this.createEvenNumber(value);
   }
 
   createOddNumber(value: number): Promise<EvenNumber | OddNumber> {
-    const newOddNumber = new this.oddNumberModel({ value });
-    return newOddNumber.save();
+    return this.createOddNumber(value);
   }
 
   findLastTen(
@@ -34,9 +32,9 @@ export class DbConnectorService {
     const { type } = getNumbersDto;
 
     if (type === 'even') {
-      return this.evenNumberModel.find().exec();
+      return this.evenNumberRepository.find();
     } else if (type === 'odd') {
-      return this.oddNumberModel.find().exec();
+      return this.oddNumberRepository.find();
     }
   }
 }

@@ -1,17 +1,22 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { EvenNumber, EvenNumberSchema } from '../schemas/even-number.schemas';
-import { OddNumber, OddNumberSchema } from '../schemas/odd-number.schema';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { EvenNumber } from '../entities/even-number.entity';
+import { OddNumber } from '../entities/odd-number.entity';
 import { DbConnectorController } from './db-connector.controller';
 import { DbConnectorService } from './db-connector.service';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://mongo:27017/even-and-odd-mongo'),
-    MongooseModule.forFeature([
-      { name: EvenNumber.name, schema: EvenNumberSchema },
-      { name: OddNumber.name, schema: OddNumberSchema },
-    ]),
+    TypeOrmModule.forRoot({
+      type: 'mongodb',
+      host: 'localhost',
+      database: 'test',
+      port: 27017,
+      entities: [EvenNumber, OddNumber],
+      useUnifiedTopology: true,
+      synchronize: true,
+    }),
+    TypeOrmModule.forFeature([EvenNumber, OddNumber]),
   ],
   controllers: [DbConnectorController],
   providers: [DbConnectorService],
