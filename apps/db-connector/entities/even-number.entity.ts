@@ -5,6 +5,6 @@ export class EvenNumber {
   @ObjectIdColumn()
   id: ObjectID;
 
-  @Column()
+  @Column('int')
   value: number;
 }

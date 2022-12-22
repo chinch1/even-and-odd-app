@@ -28,9 +28,7 @@ export class DbConnectorController {
   }
 
   @Get('lastNumbers')
-  findLastTen(
-    @Query() getNumbersDto: GetNumbersDto,
-  ): Promise<EvenNumber[] | OddNumber[]> {
+  findLastTen(@Query() getNumbersDto: GetNumbersDto): Promise<number[]> {
     return this.dbConnectorService.findLastTen(getNumbersDto);
   }
 }

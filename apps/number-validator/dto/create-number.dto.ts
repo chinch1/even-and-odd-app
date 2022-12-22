@@ -1,7 +1,7 @@
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { IsInt, IsNotEmpty } from 'class-validator';
 
 export class CreateNumberDto {
   @IsNotEmpty()
-  @IsNumber()
+  @IsInt()
   value: number;
 }

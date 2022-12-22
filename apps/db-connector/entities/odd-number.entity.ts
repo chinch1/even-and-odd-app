@@ -5,6 +5,6 @@ export class OddNumber {
   @ObjectIdColumn()
   id: ObjectID;
 
-  @Column()
+  @Column('int')
   value: number;
 }

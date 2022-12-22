@@ -18,27 +18,35 @@ export class DbConnectorService {
     return 'Use type=even | type=odd in the URL to get the specific numbers';
   }
 
-  createEvenNumber(value: number): Promise<any> {
-    return this.evenNumberRepository.insert({ value }).then((res) => {
+  createEvenNumber(value: number): Promise<EvenNumber> {
+    const newEvenNumber = {
+      value,
+    };
+    return this.evenNumberRepository.insert(newEvenNumber).then((res) => {
       return res.raw.ops[0];
     });
   }
 
-  createOddNumber(value: number): Promise<EvenNumber> {
-    return this.oddNumberRepository.insert({ value }).then((res) => {
+  createOddNumber(value: number): Promise<OddNumber> {
+    const newOddNumber = {
+      value,
+    };
+    return this.oddNumberRepository.insert(newOddNumber).then((res) => {
       return res.raw.ops[0];
     });
   }
 
-  findLastTen(
-    getNumbersDto: GetNumbersDto,
-  ): Promise<EvenNumber[] | OddNumber[]> {
+  findLastTen(getNumbersDto: GetNumbersDto): Promise<number[]> {
     const { type } = getNumbersDto;
 
     if (type === 'even') {
-      return this.evenNumberRepository.find();
+      return this.evenNumberRepository.find().then((res) => {
+        return res.map((number) => number.value);
+      });
     } else if (type === 'odd') {
-      return this.oddNumberRepository.find();
+      return this.oddNumberRepository.find().then((res) => {
+        return res.map((number) => number.value);
+      });
     }
   }
 }
