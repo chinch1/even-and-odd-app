@@ -26,11 +26,13 @@
 
 Application to connect two different Nest microservices through a web socket connection.
 
-- number-validator - receives a number and validates it its even or odd
+- number-validator - receives an integer number, validates if its even or odd and finally sends it to the db-connector microservice
 
-- db-connector - receive integers and after receiving 10, store the whole batch in the mongo db 
+- db-connector - receive an integer number and after receiving 10, it stores the whole batch in the mongo db
 
 ## Installation
+
+Run the following command to install all the dependencies:
 
 ```bash
 $ npm install
@@ -38,12 +40,16 @@ $ npm install
 
 ## Running the app
 
+Run the following command to start each microservice in development mode:
+ 
 ```bash
 # development watch mode
 $ npm run start:dev <module-name>
 ```
 
 ## Docker Compose
+
+Just run the following command to start the app in docker compose:
 
 ```bash
 $ docker compose up --build
@@ -57,15 +63,6 @@ Download the postman collection json [here](https://drive.google.com/file/d/1Uro
 
 Once the apps are running, you can access the swagger documentation at [number-validator](http://localhost:3000/api/docs) and [db-connector](http://localhost:3001/api/docs)
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
