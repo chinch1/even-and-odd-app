@@ -1,11 +1,12 @@
-import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
+import { SocketClient } from '../socket/socket-client';
+import { SocketModule } from '../socket/socket.module';
 import { NumberValidatorController } from './number-validator.controller';
 import { NumberValidatorService } from './number-validator.service';
 
 @Module({
-  imports: [HttpModule],
+  imports: [SocketModule],
   controllers: [NumberValidatorController],
-  providers: [NumberValidatorService],
+  providers: [NumberValidatorService, SocketClient],
 })
 export class NumberValidatorModule {}

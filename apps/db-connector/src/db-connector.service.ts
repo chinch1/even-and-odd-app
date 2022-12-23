@@ -4,6 +4,7 @@ import { EvenNumber } from '../entities/even-number.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OddNumber } from '../entities/odd-number.entity';
 import { MongoRepository } from 'typeorm';
+import { structureResponse } from '../helpers/structure-response';
 
 @Injectable()
 export class DbConnectorService {
@@ -18,35 +19,34 @@ export class DbConnectorService {
     return 'Use type=even | type=odd in the URL to get the specific numbers';
   }
 
-  createEvenNumber(value: number): Promise<EvenNumber> {
-    const newEvenNumber = {
-      value,
-    };
-    return this.evenNumberRepository.insert(newEvenNumber).then((res) => {
-      return res.raw.ops[0];
+  createEvenNumbers(evenNumbers: number[]) {
+    const newEvenNumbers = evenNumbers.map((value) => {
+      return { value };
     });
+
+    if (newEvenNumbers.length) {
+      this.evenNumberRepository.insertMany(newEvenNumbers);
+    }
   }
 
-  createOddNumber(value: number): Promise<OddNumber> {
-    const newOddNumber = {
-      value,
-    };
-    return this.oddNumberRepository.insert(newOddNumber).then((res) => {
-      return res.raw.ops[0];
+  createOddNumbers(oddNumbers: number[]) {
+    const newOddNumbers = oddNumbers.map((value) => {
+      return { value };
     });
+
+    if (newOddNumbers.length) {
+      this.oddNumberRepository.insertMany(newOddNumbers);
+    }
   }
 
   findLastTen(getNumbersDto: GetNumbersDto): Promise<number[]> {
     const { type } = getNumbersDto;
 
     if (type === 'even') {
-      return this.evenNumberRepository.find().then((res) => {
-        return res.map((number) => number.value);
-      });
-    } else if (type === 'odd') {
-      return this.oddNumberRepository.find().then((res) => {
-        return res.map((number) => number.value);
-      });
+      const evenNumbers = this.evenNumberRepository.find();
+      return structureResponse(evenNumbers);
     }
+    const oddNumbers = this.oddNumberRepository.find();
+    return structureResponse(oddNumbers);
   }
 }

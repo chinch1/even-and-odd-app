@@ -9,7 +9,7 @@ export class NumberValidatorController {
   ) {}
 
   @Post('sendNumber')
-  async createNumber(@Body() createNumberDto: CreateNumberDto): Promise<any> {
-    return await this.numberValidatorService.createNumber(createNumberDto);
+  createNumber(@Body() createNumberDto: CreateNumberDto): string {
+    return this.numberValidatorService.createNumber(createNumberDto);
   }
 }
