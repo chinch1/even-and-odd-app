@@ -43,7 +43,6 @@ $ npm install
 Run the following command to start each microservice in development mode:
  
 ```bash
-# development watch mode
 $ npm run start:dev <module-name>
 ```
 
