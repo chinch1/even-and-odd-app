@@ -24,7 +24,11 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Application to connect two different Nest microservices through a web socket connection.
+
+- number-validator - receives a number and validates it its even or odd
+
+- db-connector - receive integers and after receiving 10, store the whole batch in the mongo db 
 
 ## Installation
 
