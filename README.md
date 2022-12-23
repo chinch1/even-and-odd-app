@@ -45,6 +45,14 @@ $ npm run start:dev <module-name>
 $ docker compose up --build
 ```
 
+## Postman
+
+Download the postman collection json [here](https://drive.google.com/file/d/1Uropj2NBIidbjGqC6ENPs4PDInSIazVE/view?usp=share_link)
+
+## Swagger
+
+Once the apps are running, you can access the swagger documentation at [number-validator](http://localhost:3000/api/docs) and [db-connector](http://localhost:3001/api/docs)
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).

@@ -16,6 +16,6 @@ export class NumberValidatorService {
 
     this.socketClient.emitWhenReceiveNumber('newNumber', newNumber);
 
-    return `New ${type} number: ${value} will be created in the database`;
+    return `New ${type} number: ${value} sent to db-connector service and will be inserted into the database when a total of 10 numbers have been sent`;
   }
 }
