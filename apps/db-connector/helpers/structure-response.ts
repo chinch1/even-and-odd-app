@@ -5,10 +5,7 @@ export function structureResponse(
   evenOrOddNumbers: Promise<EvenNumber[] | OddNumber[]>,
 ): Promise<number[]> {
   const formattedNumbers = evenOrOddNumbers.then((numbers) => {
-    return numbers
-      .map((number) => number.value)
-      .slice(-10)
-      .reverse();
+    return numbers.map(({ value }) => value).slice(-10);
   });
 
   return formattedNumbers;

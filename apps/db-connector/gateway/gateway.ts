@@ -72,6 +72,8 @@ export class DbConnectorGateway implements OnModuleInit {
       this.dbConnectorService.createEvenNumbers(evenNumbers);
       this.dbConnectorService.createOddNumbers(oddNumbers);
 
+      console.log('Numbers saved in the database!');
+
       await this.cacheManager.reset();
     }
   }

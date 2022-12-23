@@ -7,7 +7,7 @@ import { CreateNumberDto } from '../../db-connector/dto/create-number.dto';
 export class SocketClient implements OnModuleInit {
   public socketCLient: Socket;
   constructor() {
-    this.socketCLient = io('http://localhost:3001');
+    this.socketCLient = io('http://db-connector:3001');
   }
   onModuleInit() {
     this.registerEventHandlers();

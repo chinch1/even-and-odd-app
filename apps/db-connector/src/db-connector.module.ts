@@ -11,7 +11,7 @@ import { DbConnectorGateway } from '../gateway/gateway';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      host: 'localhost',
+      host: 'mongo',
       database: 'even-and-odd-mongo',
       port: 27017,
       entities: [EvenNumber, OddNumber],
